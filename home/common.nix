@@ -23,8 +23,10 @@
 
   programs.git = {
     enable = true;
-    # userName = "Seu Nome";
-    # userEmail = "voce@exemplo.com";
+    settings.user = {
+      name = "Lin Vieira";
+      email = "lin@fnxln.com";
+    };
   };
 
   # bash continua disponível como fallback; o shell padrão é o zsh.
