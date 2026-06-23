@@ -1,0 +1,6 @@
+# Symlinks de build do Nix
+result
+result-*
+
+# direnv
+.direnv/

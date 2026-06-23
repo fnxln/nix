@@ -1,0 +1,32 @@
+// dev layout -> ~/.config/zellij/layouts/dev.kdl
+// start with: zellij --layout dev
+layout {
+    default_tab_template {
+        pane size=1 borderless=true {
+            plugin location="zellij:tab-bar"
+        }
+        children
+        pane size=2 borderless=true {
+            plugin location="zellij:status-bar"
+        }
+    }
+
+    // main: editor on top, terminal strip below
+    tab name="code" focus=true {
+        pane
+        pane size="30%"
+    }
+
+    // side-by-side terminals for run/watch
+    tab name="run" {
+        pane split_direction="vertical" {
+            pane
+            pane
+        }
+    }
+
+    // full-pane tab for git work
+    tab name="git" {
+        pane
+    }
+}

@@ -1,0 +1,42 @@
+// zellij config -> ~/.config/zellij/config.kdl
+// full reference: `zellij setup --dump-config`
+
+theme "catppuccin-mocha"
+default_shell "zsh"
+default_layout "compact"
+
+// mouse + selection
+mouse_mode true
+copy_on_select true
+copy_command "clip.exe"   // WSL: copy to Windows clipboard
+
+pane_frames true
+scrollback_editor "$EDITOR"
+scroll_buffer_size 50000
+
+// keep panes/tabs across detach; manual resurrection only
+session_serialization true
+serialize_pane_viewport true
+
+// don't nag on startup
+show_startup_tips false
+show_release_notes false
+
+// keybinds: keep defaults, add unlock-first toggle with Ctrl g
+keybinds {
+    normal {
+        // quick session detach
+        bind "Ctrl q" { Detach; }
+    }
+    // room plugin (pane/tab/session navigator) — auto-downloaded + cached
+    // `shared` = every mode, including locked: Ctrl y always goes to zellij,
+    // never reaches nvim/claude
+    shared {
+        bind "Ctrl y" {
+            LaunchOrFocusPlugin "https://github.com/rvcas/room/releases/latest/download/room.wasm" {
+                floating true
+                move_to_focused_tab true
+            }
+        }
+    }
+}
