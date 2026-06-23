@@ -94,12 +94,12 @@
   };
 
   # ── Teclado / console ─────────────────────────────────────────────
-  # Brasileiro ABNT2 por padrão (locale do sistema é pt_BR). Ajuste se
-  # usar layout US.
-  console.keyMap = "br-abnt2";
+  # US International (dead keys) em todo lugar. O console (TTY) deriva do
+  # mesmo xkb, em vez de um keymap fixo.
+  console.useXkbConfig = true;
   services.xserver.xkb = {
-    layout = "br";
-    variant = "abnt2";
+    layout = "us";
+    variant = "intl";
   };
 
   # ── Pacotes de sistema do desktop ─────────────────────────────────

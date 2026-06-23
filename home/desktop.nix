@@ -45,8 +45,8 @@
 
     input = {
       keyboard.xkb = {
-        layout = "br";
-        variant = "abnt2";
+        layout = "us";
+        variant = "intl";
       };
       touchpad = {
         tap = true;
