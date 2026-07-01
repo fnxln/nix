@@ -19,7 +19,15 @@
     fd
     eza
     jq
+    fastfetch # info do sistema no terminal
   ];
+
+  # nh: helper do Nix/NixOS (nh os switch, nh clean, etc.).
+  # O módulo já instala o pacote, então não precisa em home.packages.
+  programs.nh = {
+    enable = true;
+    flake = "/home/lin/nix"; # usado como padrão em `nh os switch` etc.
+  };
 
   programs.git = {
     enable = true;

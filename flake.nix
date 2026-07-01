@@ -11,6 +11,13 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # Workaround para o VS Code Remote server sob NixOS (patcha o node que o
+    # server baixa). Módulo externo — não faz parte do NixOS-WSL.
+    vscode-remote-workaround = {
+      url = "github:K900/vscode-remote-workaround";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # home-manager para gerenciar a config de usuário; segue o mesmo nixpkgs.
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -84,7 +91,10 @@
         # Esta máquina: NixOS rodando sob WSL2.
         nixos-wsl = mkHost {
           hostname = "nixos-wsl";
-          modules = [ inputs.nixos-wsl.nixosModules.default ];
+          modules = [
+            inputs.nixos-wsl.nixosModules.default
+            inputs.vscode-remote-workaround.nixosModules.default
+          ];
         };
 
         # Desktop x86_64 — CPU AMD + GPU AMD, greeter SDDM, compositor niri,
