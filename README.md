@@ -83,26 +83,9 @@ sudo nixos-rebuild switch --flake /home/lin/nix#nixos-wsl
 Máquina nova com **CPU AMD + GPU AMD**, greeter **SDDM** (Wayland), compositor
 **niri** e shell/bar **noctalia** — tudo o que dá é declarativo via home-manager.
 
-Passos no install da máquina nova (boot pelo ISO do NixOS):
-
-1. Particione/monte os discos em `/mnt` como de costume.
-2. **Gere o hardware real** e substitua o placeholder:
-   ```bash
-   nixos-generate-config --root /mnt
-   cp /mnt/etc/nixos/hardware-configuration.nix \
-      /caminho/para/nix/hosts/desktop/hardware-configuration.nix
-   ```
-   > O arquivo versionado é só um PLACEHOLDER (UUIDs fictícios) para o flake
-   > avaliar/buildar antes do install — ele **não** dá boot na máquina real.
-3. Ajuste `system.stateVersion` em `hosts/desktop/default.nix` para a versão do
-   install (ex.: `"26.05"`), e o layout de teclado se não for ABNT2.
-4. Instale apontando para o host `desktop`:
-   ```bash
-   nixos-install --flake /caminho/para/nix#desktop
-   ```
-5. No boot: o **SDDM** aparece, escolha a sessão **niri**; a **noctalia** sobe
-   sozinha (systemd user service). Atalhos: `Super+Return` (terminal foot),
-   `Super+D` (launcher), `Super+B` (Firefox), `Super+/` (lista de atalhos).
+👉 **Guia completo de instalação (fresh install pelo ISO):**
+[`docs/instalar-desktop.md`](docs/instalar-desktop.md) — particionar, clonar o
+flake, regerar o hardware, **definir a senha do `lin`** e `nixos-install`.
 
 Notas:
 - O cache binário do niri (`niri.cachix.org`) é habilitado por
